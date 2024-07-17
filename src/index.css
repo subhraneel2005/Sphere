@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.profile{
+  background: rgb(16,55,249);
+background: linear-gradient(90deg, rgba(16,55,249,1) 0%, rgba(131,5,227,1) 100%);
+}
+
+.home{
+  background: rgb(16,55,249);
+  background: linear-gradient(90deg, rgba(16,55,249,1) 0%, rgba(131,5,227,1) 100%);
+}
+
+.mainBlock {
+  width: calc(100vw - 200px);
+  left: 200px;
+  position: relative;
+}
