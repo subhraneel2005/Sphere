@@ -6,8 +6,18 @@ import { FaPlus } from "react-icons/fa6";
 import { MdTravelExplore } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
+import {Dialog, 
+  DialogContent, 
+  DialogTrigger,   
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,} from "./ui/dialog"
 
+import { Card, CardHeader, CardFooter, CardContent } from "@/components/ui/card"
 
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Button } from './ui/button';
 
 function Profile() {
 
@@ -37,14 +47,37 @@ function Profile() {
         {/* Sidebar content goes here */}
         <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><IoHomeOutline size={20}/>Home</button>
         <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><MdTravelExplore size={20}/>Explore</button>
-        <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><FaPlus size={20}/>Create</button>
+        <Dialog className="dark">
+          <DialogTrigger>
+          <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><FaPlus size={20}/>Create</button>
+          </DialogTrigger>
+          <DialogContent>
+           
+              <DialogHeader>
+                <DialogTitle className="text-white">Create Post</DialogTitle>
+              </DialogHeader>
+              
+              <div className='space-y-6'>
+                <Input className="text-white" placeholder="Throw a title"/>
+                <Textarea className="text-white" placeholder="Whats on your mind..."/>
+              </div>
+              
+             
+                <div className="flex justify-between">
+                <Button variant="secondary">Cancel</Button>
+                <Button>Post</Button>
+                </div>
+              
+
+          </DialogContent>
+        </Dialog>
         <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><Avatar alt={user.firstName} src={user.imageUrl} className='border-2 border-gray-200 rounded-full' sx={{ width: 24, height: 24 }} />Profile</button>
         <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300' onClick={() => signOut({ redirectUrl: '/' })}><IoIosLogOut size={20}/>Logout</button>
       </div>
       
       {/* Main content */}
       <div className="flex-1 p-8">
-        <div className="flex flex-col w-[80%] relative left-[20%] items-center">
+        <div className="flex flex-col w-full md:w-[80%] relative md:left-[20%] items-center">
         <Avatar alt={user.firstName} src={user.imageUrl} />
           <h2 className="text-xl text-gray-100 font-semibold">{user.firstName}</h2>
           <p className="text-gray-300">@{user.firstName.toLowerCase()}</p>
