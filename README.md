@@ -1,6 +1,6 @@
 # Sphere - Social Media App Frontend
 
-![Sphere Logo](https://ibb.co/SJBqPMY)
+![Sphere Logo](https://t4.ftcdn.net/jpg/07/66/14/53/360_F_766145359_b29ZWFiWEsVug8ov3booiUQEcLfrQp7t.jpg)
 
 Welcome to the frontend repository of Sphere, a social media application built with the MERN stack. This repository contains the React-based frontend code for Sphere.
 
