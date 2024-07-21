@@ -61,14 +61,22 @@ function Profile() {
         }
     };
 
-    const getAllPosts = async() => {
-      const res = await axios.get("http://localhost:3000/api/getAllPosts");
-      setPosts(res.data);
-    }
+    const getAllPosts = async () => {
+      try {
+          const res = await axios.get("http://localhost:3000/api/getPosts", {
+              headers: { adminName: user.id }
+          });
+          setPosts(res.data);
+      } catch (error) {
+          console.error('Error fetching posts:', error);
+      }
+  };
 
-    useEffect(() => {
-      getAllPosts();
-    },[])
+  useEffect(() => {
+      if (user) {
+          getAllPosts();
+      }
+  }, [user]);
 
     if (!user) {
         return <h1>Loading...</h1>;
