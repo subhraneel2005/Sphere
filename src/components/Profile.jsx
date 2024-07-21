@@ -32,8 +32,8 @@ function Profile() {
     const [postTitle, setPostTitle] = useState('');
     const [postDescription, setPostDescription] = useState('');
     const [postCategory, setPostCategory] = useState('');
-    const [postImage, setPostImage] = useState();
-    const [postVideo, setPostVideo] = useState();
+    const [postImage, setPostImage] = useState('');
+    const [postVideo, setPostVideo] = useState('');
 
     
     
@@ -113,7 +113,14 @@ function Profile() {
                                 type="file"
                                 onChange={(e) => {
                                   setPostImage(e.target.files[0])
-                                  setPostImage(URL.createObjectURL(e.target.files[0]))
+                                  const file = e.target.files[0];
+                                  if (file) {
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                      setPostImage(reader.result);
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
                                 }}
                             />
                             <Input
@@ -121,7 +128,14 @@ function Profile() {
                                 type="file"
                                 onChange={(e) => {
                                   setPostVideo(e.target.files[0])
-                                  setPostVideo(URL.createObjectURL(e.target.files[0]))
+                                  const file = e.target.files[0];
+                                  if (file) {
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                      setPostVideo(reader.result);
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
                                 }}
                             />
                         </div>
