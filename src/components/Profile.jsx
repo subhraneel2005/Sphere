@@ -168,7 +168,7 @@ function Profile() {
                         <p className='text-lg text-gray-200 block md:flex'>30 <span className='text-gray-300 text-sm md:text-lg ml-1'>Following</span></p>
                     </div>
 
-                    <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 px-10 py-5 w-full min-h-screen'>
+                    <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:px-10 md:py-5 w-full min-h-screen'>
                         {posts.map((p) => (
                           <div key={p._id}>
                             <Card>
@@ -200,7 +200,8 @@ function Profile() {
                                 <p className="text-sm text-gray-500">{p.postDescription}</p>
                                 </div>
                             </div>
-                            <div className="flex justify-between items-center p-4 border-t">
+                            </div>
+                            <div className="flex justify-between bg-gray-300 rounded-b-xl items-center p-4 border-t">
                                 <div className="flex items-center">
                                     <button className="flex items-center text-gray-600 hover:text-red-500 transition duration-200">
                                     <AiOutlineHeart size={24} className="mr-1" />
@@ -215,7 +216,6 @@ function Profile() {
                                     <FiShare size={24} className="mr-1" />
                                     <span>Share</span>
                                 </button>
-                                </div>
                                 </div>
                             </Card>
 
