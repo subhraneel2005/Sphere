@@ -7,7 +7,7 @@ function HomePage() {
   const { user } = useUser();
   const nav = useNavigate();
   if (user) {
-    nav("/profile");
+    nav(`/profile/${user.id}`);
   }
 
   return (

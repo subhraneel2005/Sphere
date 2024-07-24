@@ -5,12 +5,28 @@ import { BiCategory } from 'react-icons/bi';
 import { MdDateRange } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Copy } from "lucide-react"
+ 
+import { Button } from "../components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../components/ui/dialog"
+import { Input } from "../components/ui/input"
+import { Label } from "../components/ui/label"
 
 const SinglePost = () => {
   const { postId } = useParams(); // Extract postId from URL
   const [post, setPost] = useState(null); // State to hold post data
   const [loading, setLoading] = useState(true); // State for loading
   const [error, setError] = useState(null); // State for error handling
+  
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -30,7 +46,11 @@ const SinglePost = () => {
 
   // Loading state
   if (loading) {
-    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+    return(
+      <div className='min-h-screen w-full flex justify-center items-center'>
+                <div className='loader'></div>
+            </div>
+    )
   }
 
   // Error state
@@ -47,7 +67,11 @@ const SinglePost = () => {
     postImage,
     adminImg,
     adminUsername,
+    _id,
+    adminName,
   } = post;
+
+  var textToCopy=`http://localhost:5173/profile/${adminName}/post/${_id}`;
 
   return (
     <div className="flex justify-center items-center min-h-screen singlePost p-6">
@@ -101,7 +125,7 @@ const SinglePost = () => {
 
         {/* Footer Section */}
         <div className="flex justify-between items-center p-4 bg-gray-100 border-t">
-          <div className="flex items-center">
+          <div className="flex items-center justify-evenly w-full">
             <button className="flex items-center text-gray-600 hover:text-red-500 transition duration-200">
               <AiOutlineHeart size={24} className="mr-1" />
               <span>Like</span>
@@ -110,11 +134,46 @@ const SinglePost = () => {
               <AiOutlineComment size={24} className="mr-1" />
               <span>Comment</span>
             </button>
+            <Dialog>
+              <DialogTrigger asChild>
+              <button className="flex items-center text-gray-600 hover:text-green-500 transition duration-200">
+                <FiShare size={24} className="mr-1" />
+                <span>Share</span>
+              </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle><h1 className='text-2xl text-gray-100 font-bold'>Share link</h1></DialogTitle>
+                  <DialogDescription>
+                    Anyone who has this link will be able to view this.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex items-center space-x-2">
+                  <div className="grid flex-1 gap-2">
+                    <Label htmlFor="link" className="sr-only">
+                      Link
+                    </Label>
+                    <Input
+                      id="link"
+                      defaultValue={`http://localhost:5173/profile/${adminName}/post/${_id}`}
+                      readOnly
+                    />
+                  </div>
+                  <Button type="submit" size="sm" className="px-3">
+                    <span className="sr-only">Copy</span>
+                    <Copy className="h-4 w-4" onClick={() => {navigator.clipboard.writeText(textToCopy)}}/>
+                  </Button>
+                </div>
+                <DialogFooter className="sm:justify-start">
+                  <DialogClose asChild>
+                    <Button type="button" variant="secondary">
+                      Close
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
-          <button className="flex items-center text-gray-600 hover:text-green-500 transition duration-200">
-            <FiShare size={24} className="mr-1" />
-            <span>Share</span>
-          </button>
         </div>
       </div>
     </div>

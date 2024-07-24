@@ -89,7 +89,11 @@ function Profile() {
   }, [user]);
 
     if (!user) {
-        return <h1>Loading...</h1>;
+        return(
+            <div className='min-h-screen w-full flex justify-center items-center'>
+                <div className='loader'></div>
+            </div>
+        )
     }
 
     return (
@@ -168,7 +172,7 @@ function Profile() {
                         <p className='text-lg text-gray-200 block md:flex'>30 <span className='text-gray-300 text-sm md:text-lg ml-1'>Following</span></p>
                     </div>
 
-                    <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:px-10 md:py-5 w-full min-h-screen'>
+                   {posts ?  <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:px-10 md:py-5 w-full min-h-screen'>
                         {posts.map((p) => (
                           <div key={p._id}>
                             <Card>
@@ -221,7 +225,9 @@ function Profile() {
 
                           </div>
                         ))}
-                    </div>
+                    </div> : <div className='min-h-screen w-full flex justify-center items-center'>
+                <div className='loader'></div>
+            </div>}
                 </div>
             </div>
 

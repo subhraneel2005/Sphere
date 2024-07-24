@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/test" element={<SidebarFooter />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/post/:postId" element={<SinglePost />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/:id/post/:postId" element={<SinglePost />} />
       </Routes>
     </BrowserRouter>
   )
