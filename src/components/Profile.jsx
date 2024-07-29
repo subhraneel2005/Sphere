@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { FiShare } from 'react-icons/fi';
+import Explore from './Explore';
 
 function Profile() {
 
@@ -39,6 +40,8 @@ function Profile() {
     const [postCategory, setPostCategory] = useState('');
     const [postImage, setPostImage] = useState('');
     const [postVideo, setPostVideo] = useState('');
+
+
     const navigate = useNavigate();
 
     const singlePostHandler = (id) => {
@@ -56,7 +59,7 @@ function Profile() {
                 postImage: postImage,
                 adminName: user?.id,
                 adminImg: user?.imageUrl,
-                adminUsername: user?.firstName
+                adminUsername: user?.firstName,
             });
             // Reset form after successful post creation
             alert("Post added to database");
@@ -102,7 +105,7 @@ function Profile() {
             <div className="hidden fixed lg:flex bg-black bg-opacity-40 flex-col justify-center items-center space-y-10 w-[20%] h-full border-r-2 border-gray-400">
                 {/* Sidebar content goes here */}
                 <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><IoHomeOutline size={20} />Home</button>
-                <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><MdTravelExplore size={20} />Explore</button>
+                <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300' onClick={() => navigate('/explore')}><MdTravelExplore size={20} />Explore</button>
                 <Dialog className="dark">
                     <DialogTrigger>
                         <button className='flex justify-center items-center gap-3 text-xl text-gray-200 hover:text-gray-300 duration-300'><FaPlus size={20} />Create</button>
@@ -225,11 +228,10 @@ function Profile() {
 
                           </div>
                         ))}
-                    </div> : <div className='min-h-screen w-full flex justify-center items-center'>
-                <div className='loader'></div>
-            </div>}
+                    </div> : <div className='loader'></div>}
                 </div>
             </div>
+                              
 
             {/* Footer for mobile devices */}
             <div className="lg:hidden fixed flex justify-evenly bg-black bg-opacity-90 px-3 bottom-0 left-0 w-full h-16 border-t-2 border-gray-400">
