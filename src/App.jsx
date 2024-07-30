@@ -5,6 +5,7 @@ import SidebarFooter from './components/SidebarFooter'
 import Profile from './components/Profile'
 import SinglePost from './components/SinglePost'
 import Explore from './components/Explore'
+import OthersPosts from './components/OthersPosts'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profile/:id/post/:postId" element={<SinglePost />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/explore/:postId" element={<OthersPosts />} />
       </Routes>
     </BrowserRouter>
   )

@@ -26,7 +26,17 @@ const Explore = () => {
     fetchPosts();
   }, []);
 
-  
+  const postHandler = (postId) => {
+    navigate(`/explore/${postId}`);
+  }
+
+  if(!allPosts){
+    return(
+      <div className='min-h-screen w-full flex justify-center items-center'>
+        <p className='text-white text-6xl'>Loading...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col w-full min-h-screen items-center profile">
@@ -56,7 +66,7 @@ const Explore = () => {
                             </div>
                             <div className="card-content flex flex-col items-center">
                                 {p.postImage && (
-                                <div className="image-container w-full h-64 overflow-hidden">
+                                <div onClick={() => postHandler(p._id)} className="image-container cursor-pointer w-full h-64 overflow-hidden">
                                     <img
                                     src={p.postImage}
                                     alt="Post"
